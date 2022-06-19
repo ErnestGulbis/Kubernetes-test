@@ -1,29 +1,27 @@
 pipeline {
     agent any
-    environment {
-        YC_ACCOUNT_KEY_FILE = credentials('YC_ACCOUNT_KEY_FILE')
-        YC_FOLDER_ID = credentials('YC_FOLDER_ID')
-        YC_SUBNET_ID = credentials('YC_SUBNET_ID')
-
-        PACKER_SH = '/opt/yandex-packer/packer build -color=false'
+    parameters {
+        string(defaultValue: "https://www.travelline.ru/", description: 'What URL to check?', name: 'URL')
     }
     stages {
-        stage('Core') {
-            steps {
-                sh label: '', script: "${env.PACKER_SH} ./jenkins-packer/packer/base.json"
+        stage('Checkout') {
+            steps { 
+                checkout scm
             }
         }
-        stage('Role-Based') {
+        stage('Build') {
             steps {
-                parallel(
-                    nginx: {
-                        sh label: '', script: "${env.PACKER_SH} ./jenkins-packer/packer/nginx.json"
-                    },
-                    django: {
-                        sh label: '', script: "${env.PACKER_SH} ./jenkins-packer/packer/django.json" 
-                    }
-                )
+                sh 'python3 --version'
             }
+        }
+    }
+    post {
+        always {
+            emailext body: "Success",
+            to: "cyber.ernests@gmail.com",
+            from: 'jenkins@example.com',
+            subject: "Example Build: ${env.JOB_NAME} - Success", 
+            body: "Success"
         }
     }
 }
