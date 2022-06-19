@@ -19,8 +19,8 @@ pipeline {
         always {
             emailext body: "Success",
             to: "cyber.ernests@gmail.com",
-            from: 'jenkins@example.com',
-            subject: "Example Build: ${env.JOB_NAME} - Success"
+            from: 'mariksafinator@gmail.com',
+            subject: "Example"
         }
     }
 }
