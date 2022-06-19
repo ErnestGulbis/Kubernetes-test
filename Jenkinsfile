@@ -11,8 +11,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'python3 --version'
-                sh 'echo ${params.URL}'
+                sh 'echo $WORKSPACE'
             }
         }
     }
