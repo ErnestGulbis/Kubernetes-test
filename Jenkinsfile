@@ -20,7 +20,8 @@ pipeline {
     post {
         always {
             emailext ( 
-                to: "cyber.ernests@gmail.com",
+                to: "ferrum-ivanko@yandex.ru",
+                from: "job@travelline.ru",
                 subject: "Example",
                 body: "111",
                 attachLog: true,
