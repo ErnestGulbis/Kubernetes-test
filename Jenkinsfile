@@ -12,17 +12,19 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'cd $WORKSPACE'
-                sh 'echo ${params.URL}'
-                sh 'python3 url_checker.py ${params.URL}'
+                sh 'echo ${URL}'
+                sh 'python3 url_checker.py ${URL}'
             }
         }
     }
     post {
         always {
-            mail to: "cyber.ernests@gmail.com",
-            from: 'mariksafinator@gmail.com',
-            subject: "Example",
-            body: "111"
+            emailext ( 
+                to: "cyber.ernests@gmail.com",
+                subject: "Example",
+                body: "111",
+                attachLog: true,
+            )
         }
     }
 }
