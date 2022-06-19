@@ -21,8 +21,7 @@ pipeline {
             emailext body: "Success",
             to: "cyber.ernests@gmail.com",
             from: 'jenkins@example.com',
-            subject: "Example Build: ${env.JOB_NAME} - Success", 
-            body: "Success"
+            subject: "Example Build: ${env.JOB_NAME} - Success"
         }
     }
 }
