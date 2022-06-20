@@ -2,6 +2,7 @@
 
 import requests
 import argparse
+import sys
 
 parser = argparse.ArgumentParser()
 parser.add_argument('url', type=str, help="Your URL")
@@ -17,7 +18,8 @@ def main(url):
             result = 'failure'
     except requests.exceptions.RequestException as e:
         result = 'failure'
-    print(result)
+    return result
 
 if __name__ == '__main__':
-    main(args.url)
+    result = main(args.url)
+    sys.exit(result)

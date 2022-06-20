@@ -13,17 +13,18 @@ pipeline {
             steps {
                 sh 'cd $WORKSPACE'
                 sh 'echo ${URL}'
-                sh 'python3 url_checker.py ${URL}'
+                sh 'script_output=$(python3 url_checker.py ${URL} 2>&1 > /dev/null)'
+                sh 'echo $script_output'
             }
         }
     }
     post {
         always {
             emailext ( 
-                to: "mariksafinator@gmail.com",
+                to: "ferrum-ivanko@yandex.ru",
                 from: "cyber.ernests@gmail.com",
-                subject: "Example",
-                body: "111",
+                subject: "Jenkins Pipeline Job Result",
+                body: "${script_output}",
                 attachLog: true,
             )
         }
