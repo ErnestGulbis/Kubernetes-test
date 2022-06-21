@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sh 'cd $WORKSPACE'
                 sh 'python3 url_checker.py ${URL}'
-                RESULT=readFile('result.txt')
+                step([RESULT=readFile('result.txt')])
                 sh 'echo ${RESULT}'
             }
         }
