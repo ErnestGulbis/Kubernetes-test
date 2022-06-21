@@ -12,14 +12,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'cd $WORKSPACE'
-                sh 'echo ${URL}'
-                script {
-                    RESULT = sh(
-                        script: 'python3 url_checker.py ${URL}',
-                        returnStdout: true
-                    ).trim()
-                }
-                sh 'echo RESULT'
+                sh 'python3 url_checker.py ${URL}'
+                RESULT=readFile('result.txt')
                 sh 'echo ${RESULT}'
             }
         }
