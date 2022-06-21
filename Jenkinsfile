@@ -23,7 +23,11 @@ pipeline {
                     RESULT = readFile 'result.txt'
                     echo "${RESULT}"
                 }
-                sh 'echo (${RESULT}) | mail -s "Jenkins Pipeline Job Result" ferrum-ivanko@yandex.ru'
+                script {
+                    emailext body: "${RESULT}",
+                    subject: "Jenkins Pipeline Job Result",
+                    to: "ferrum-ivanko@yandex.ru"
+                }
               }
         }
     }
