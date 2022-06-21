@@ -18,8 +18,12 @@ def main(url):
             result = 'failure'
     except requests.exceptions.RequestException as e:
         result = 'failure'
-    print(result)
+    with open('result.txt',"w",encoding="utf-8") as file:
+        file.write(result)
+    file.close()
+    #print(result)
 
 if __name__ == '__main__':
-    result = main(args.url)
+    main(args.url)
+    #result = main(args.url)
     #sys.exit(result)
