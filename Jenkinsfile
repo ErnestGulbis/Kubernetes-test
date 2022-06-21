@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sh 'cd $WORKSPACE'
                 sh 'echo ${URL}'
-                sh 'script_output=$((python3 url_checker.py https://vk.com) 2>&1)'
+                sh 'script_output=$(python3 url_checker.py https://vk.com 2>&1)'
                 sh 'echo $script_output'
             }
         }
