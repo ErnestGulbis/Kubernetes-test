@@ -18,8 +18,8 @@ def main(url):
             result = 'failure'
     except requests.exceptions.RequestException as e:
         result = 'failure'
-    return result
+    print(result)
 
 if __name__ == '__main__':
     result = main(args.url)
-    sys.exit(result)
+    #sys.exit(result)

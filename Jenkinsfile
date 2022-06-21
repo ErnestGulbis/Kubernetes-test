@@ -13,14 +13,13 @@ pipeline {
             steps {
                 sh 'cd $WORKSPACE'
                 sh 'echo ${URL}'
-                sh 'script_output=$(python3 url_checker.py https://vk.com 2>&1)'
-                sh 'echo $script_output'
+                sh 'python3 url_checker.py ${URL}'
             }
         }
         stage('Sending email') {
             steps {
                 sh 'echo ${URL}'
-                sh 'echo ${URL} | mail -s "Test" ferrum-ivanko@yandex.ru'
+                sh 'echo ${URL} | mail -s "Jenkins Pipeline Job Result" ferrum-ivanko@yandex.ru'
               }
         }
     }
