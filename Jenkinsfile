@@ -15,13 +15,13 @@ pipeline {
                 sh 'python3 url_checker.py ${URL}'
                 script {
                     env.FILENAME = readFile 'result.txt'
+                    echo "${env.FILENAME}"
                 }
-                echo '${env.FILENAME}'
             }
         }
         stage('Sending email') {
             steps {
-                sh 'echo ${env.FILENAME} | mail -s "Jenkins Pipeline Job Result" ferrum-ivanko@yandex.ru'
+                sh 'echo "${env.FILENAME}" | mail -s "Jenkins Pipeline Job Result" ferrum-ivanko@yandex.ru'
               }
         }
     }
