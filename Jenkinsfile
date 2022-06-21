@@ -20,12 +20,10 @@ pipeline {
                 sh 'cd $WORKSPACE'
                 sh 'ls'
                 script {
-                    currentBuild.result = readFile 'result.txt'
-                    echo "${currentBuild.result}"
+                    RESULT = readFile 'result.txt'
+                    echo "${RESULT}"
                 }
-                script{
-                    echo "${currentBuild.result}" | mail -s "Jenkins Pipeline Job Result" ferrum-ivanko@yandex.ru
-                }
+                sh 'echo (${RESULT}) | mail -s "Jenkins Pipeline Job Result" ferrum-ivanko@yandex.ru'
               }
         }
     }
