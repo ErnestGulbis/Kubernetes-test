@@ -21,7 +21,7 @@ pipeline {
         stage('Sending email') {
             steps {
                 sh 'cd $WORKSPACE'
-                // Читаем результат в переменную 
+                // Читаем результат в переменную и выводим в консоль
                 script {
                     RESULT = readFile 'result.txt'
                     echo "${RESULT}"
@@ -30,7 +30,7 @@ pipeline {
                 script {
                     mail body: "${RESULT}",
                     subject: "Jenkins Pipeline Job Result",
-                    to: "ferrum-ivanko@yandex.ru"
+                    to: "name@domain.com"
                 }
               }
         }
