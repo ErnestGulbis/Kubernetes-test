@@ -17,7 +17,7 @@ pipeline {
             }
         }
         stage('Sending email') {
-            node() {
+            steps {
                 sh 'echo "Test Jenkins Pipeline job Email" | mail -s "Test" ferrum-ivanko@yandex.ru'
               }
         }
