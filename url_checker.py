@@ -21,9 +21,9 @@ def main(url):
     #with open('result.txt',"w",encoding="utf-8") as file:
         #file.write(result)
     #file.close()
-    print(result)
+    return result
 
 if __name__ == '__main__':
     main(args.url)
-    #result = main(args.url)
-    #sys.exit(result)
+    result = main(args.url)
+    sys.exit(result)
