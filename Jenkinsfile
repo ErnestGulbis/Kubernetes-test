@@ -14,14 +14,18 @@ pipeline {
                 sh 'cd $WORKSPACE'
                 sh 'echo ${URL}'
                 script {
-                  env.RESULT = sh([script: "python3 url_checker.py ${URL}", returnStdout: true]).trim()
+                    RESULT = sh(
+                        script: 'python3 url_checker.py ${URL}',
+                        returnStdout: true
+                    ).trim()
                 }
-                sh 'echo ${env.RESULT}'
+                sh 'echo RESULT'
+                sh 'echo ${RESULT}'
             }
         }
         stage('Sending email') {
             steps {
-                sh 'echo ${env.RESULT} | mail -s "Jenkins Pipeline Job Result" ferrum-ivanko@yandex.ru'
+                sh 'echo ${RESULT} | mail -s "Jenkins Pipeline Job Result" ferrum-ivanko@yandex.ru'
               }
         }
     }
