@@ -21,7 +21,8 @@ pipeline {
         }
         stage('Sending email') {
             steps {
-                sh 'echo "${env.FILENAME}" | mail -s "Jenkins Pipeline Job Result" ferrum-ivanko@yandex.ru'
+                sh 'echo ${env.FILENAME}'
+                sh 'echo ${env.FILENAME} | mail -s "Jenkins Pipeline Job Result" ferrum-ivanko@yandex.ru'
               }
         }
     }
