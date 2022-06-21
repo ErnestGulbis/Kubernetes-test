@@ -23,7 +23,7 @@ pipeline {
                     currentBuild.result = readFile 'result.txt'
                     echo "${currentBuild.result}"
                 }
-                sh 'echo ${currentBuild.result} | mail -s "Jenkins Pipeline Job Result" ferrum-ivanko@yandex.ru'
+                sh 'echo "${currentBuild.result}" | mail -s "Jenkins Pipeline Job Result" ferrum-ivanko@yandex.ru'
               }
         }
     }
