@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sh 'cd $WORKSPACE'
                 sh 'python3 url_checker.py ${URL}'
-                step([RESULT=readFile('result.txt')])
+                readResult('result.txt')
                 sh 'echo ${RESULT}'
             }
         }
@@ -23,4 +23,7 @@ pipeline {
               }
         }
     }
+}
+void readResult(String resultFile=""){
+    RESULT=readFile(resultFile)
 }
