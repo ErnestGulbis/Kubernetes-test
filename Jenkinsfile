@@ -13,7 +13,9 @@ pipeline {
             steps {
                 sh 'cd $WORKSPACE'
                 sh 'echo ${URL}'
-                env.RESULT = sh([script: "python3 url_checker.py ${URL}", returnStdout: true]).trim()
+                script {
+                  env.RESULT = sh([script: "python3 url_checker.py ${URL}", returnStdout: true]).trim()
+                }
                 sh 'echo ${env.RESULT}'
             }
         }
