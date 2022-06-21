@@ -13,9 +13,13 @@ pipeline {
             steps {
                 sh 'cd $WORKSPACE'
                 sh 'echo ${URL}'
-                sh 'script_output=$(python3 url_checker.py ${URL} 2>&1 > /dev/null)'
-                sh 'echo $script_output'
+                sh 'python3 url_checker.py ${URL}'
             }
+        }
+        stage('Sending email') {
+            node() {
+                sh 'echo "Test Jenkins Pipeline job Email" | mail -s "Test" ferrum-ivanko@yandex.ru'
+              }
         }
     }
     post {
