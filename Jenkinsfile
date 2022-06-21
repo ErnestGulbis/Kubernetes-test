@@ -13,23 +13,14 @@ pipeline {
             steps {
                 sh 'cd $WORKSPACE'
                 sh 'echo ${URL}'
-                sh 'python3 url_checker.py ${URL}'
+                sh 'script_output=$(python3 url_checker.py https://vk.com 2>&1 > /dev/null)'
+                sh 'echo $script_output'
             }
         }
         stage('Sending email') {
             steps {
-                sh 'echo "Test Jenkins Pipeline job Email" | mail -s "Test" ferrum-ivanko@yandex.ru'
+                sh 'echo $script_output | mail -s "Test" ferrum-ivanko@yandex.ru'
               }
-        }
-    }
-    post {
-        always {
-            emailext ( 
-                to: "ferrum-ivanko@yandex.ru",
-                subject: "Jenkins Pipeline Job Result",
-                body: "12345",
-                attachLog: true,
-            )
         }
     }
 }
