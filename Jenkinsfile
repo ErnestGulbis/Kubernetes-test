@@ -24,7 +24,7 @@ pipeline {
                     echo "${RESULT}"
                 }
                 script {
-                    emailext body: "${RESULT}",
+                    mail body: "${RESULT}",
                     subject: "Jenkins Pipeline Job Result",
                     to: "ferrum-ivanko@yandex.ru"
                 }
