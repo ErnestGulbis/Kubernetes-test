@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        string(defaultValue: "https://www.travelline.ru/", description: 'What URL to check?', name: 'URL')
+        string(defaultValue: "https://codeby.school/", description: 'What URL to check?', name: 'URL')
     }
     stages {
         stage('Checkout') {
